@@ -5,44 +5,120 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PDF OCR テキスト抽出ツール</title>
   <style>
+    /* 全体のスタイル */
     body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
+      font-family: "Roboto", Arial, sans-serif;
+      margin: 0;
       padding: 0;
-      line-height: 1.6;
-      background-color: #ff9e78;
+      background: linear-gradient(120deg, #89f7fe, #66a6ff); /* 背景グラデーション */
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
     }
-    h1 {
+
+    /* コンテナ */
+    .container {
+      max-width: 500px;
+      width: 100%;
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
       text-align: center;
+    }
+
+    /* ヘッダー */
+    h1 {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 20px;
       color: #333;
     }
-    .container {
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 20px;
-      background: #fff;
+
+    /* アップロードエリア */
+    #upload-area label {
+      font-size: 16px;
+      font-weight: bold;
+      color: #555;
+    }
+
+    #upload-area input[type="file"] {
+      margin-top: 10px;
+      font-size: 16px;
+      padding: 10px;
+      border: 2px dashed #66a6ff;
       border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      cursor: pointer;
+      transition: all 0.3s ease;
     }
-    #upload-area {
-      margin: 20px 0;
-      text-align: center;
+
+    #upload-area input[type="file"]:hover {
+      border-color: #1e90ff;
+      background: #f0f8ff;
     }
-    input[type="file"] {
-      display: block;
-      margin: 10px auto;
+
+    /* プログレスメッセージ */
+    #progress {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #777;
+      animation: fadein 0.5s ease;
     }
+
+    @keyframes fadein {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* 出力エリア */
     #output {
       margin-top: 20px;
       white-space: pre-wrap;
-      background: #eee;
-      padding: 10px;
-      border-radius: 5px;
+      background: #f8f9fa;
+      padding: 15px;
+      border-radius: 8px;
       font-size: 14px;
+      font-family: "Courier New", monospace;
+      text-align: left;
+      max-height: 400px;
+      overflow-y: auto;
+      box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
     }
-    #progress {
-      text-align: center;
-      margin-top: 10px;
+
+    /* ボタンスタイル（必要に応じて追加） */
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #fff;
+      background: #1e90ff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    /* メディアクエリ（モバイル向け対応） */
+    @media (max-width: 768px) {
+      .container {
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 20px;
+      }
     }
   </style>
 </head>
