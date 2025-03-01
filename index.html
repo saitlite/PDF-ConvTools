@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDF OCR テキスト抽出ツール</title>
+  <!-- CSSファイルを読み込む -->
+  <link rel="stylesheet" type="text/css" href="./styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>PDF OCR テキスト抽出ツール</h1>
+    <form id="upload-form">
+      <label for="pdf-file">PDFファイルをアップロードしてください:</label>
+      <input type="file" id="pdf-file" name="pdf" accept="application/pdf">
+      <button type="submit">アップロードして処理</button>
+    </form>
+    <div id="progress"></div>
+    <div id="output"></div>
+    <div class="button-group">
+      <button id="clear-btn" class="clear">クリア</button>
+    </div>
+  </div>
+
+  <!-- JavaScriptファイルを読み込む -->
+  <script src="./script.js"></script>
+</body>
+</html>
