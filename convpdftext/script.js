@@ -63,26 +63,38 @@ document.getElementById("pdf-file").addEventListener("change", async function (e
           // 画像データを取得
           const imageData = canvas.toDataURL("image/png");
 
-          // Tesseract.jsでOCR処理
-          document.getElementById("progress").textContent = `OCR 処理中... ページ ${i}/${totalPages}`;
-          const result = await Tesseract.recognize(imageData, "eng", {
-            logger: (m) => {
-              console.log(m); // ログの確認（進行状況）
-            },
-          });
+         // Tesseract.jsでOCR処理
+         document.getElementById("progress").textContent = `OCR 処理中... ページ ${i}/${totalPages}`;
+         const result = await Tesseract.recognize(imageData, "eng", {
+           logger: (m) => {
+             console.log(m); // ログの確認（進行状況）
+           },
+         });
 
-          // テキストを追加
-          extractedText += `--- Page ${i} ---\n${result.data.text}\n\n`;
-}
+         // テキストを追加
+         extractedText += `--- Page ${i} ---\n${result.data.text}\n\n`;
+       }
 
-// 抽出したテキストを出力
-document.getElementById("output").textContent = extractedText;
-document.getElementById("progress").textContent = "OCR 処理が完了しました！";
-}
-} catch (error) {
-console.error("PDF処理中にエラーが発生しました:", error);
-alert("PDFを処理できませんでした。");
-}
-};
-fileReader.readAsArrayBuffer(file);
+       // 抽出したテキストを出力
+       document.getElementById("output").textContent = extractedText;
+       document.getElementById("progress").textContent = "OCR 処理が完了しました！";
+     }
+   } catch (error) {
+     console.error("PDF処理中にエラーが発生しました:", error);
+     alert("PDFを処理できませんでした。");
+   }
+ };
+
+ fileReader.readAsArrayBuffer(file);
+});
+
+// クリアボタンの処理
+document.getElementById('clear-btn').addEventListener('click', function () {
+ // ファイル入力をリセット
+ const fileInput = document.getElementById('pdf-file');
+ fileInput.value = ''; // ファイル選択をリセット
+
+ // プログレスと出力内容をクリア
+ document.getElementById('progress').textContent = '';
+ document.getElementById('output').textContent = '';
 });
